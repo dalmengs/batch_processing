@@ -69,3 +69,6 @@ Batch: 27 28 29
 (Request: 28) Result: ABCED28ABCED28
 (Request: 29) Result: ABCED29ABCED29
 ```
+
+## 업데이트
+* FastAPI에서 이벤트 루프를 얻으려고 할 때, `RuntimeError: no running event loop` 에러가 떠서, loop를 통해 Future 객체를 얻지 않고, `asyncio.Future()`로 객체를 얻는 방식으로 바꾸었다. (240418 12:20)

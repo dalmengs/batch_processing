@@ -8,7 +8,6 @@ class Processor:
         self.queue = asyncio.Queue()
         self.batch_size = batch_size
         self.latency = latency
-        self.loop = asyncio.get_running_loop()
         asyncio.create_task(self.process())
 
     async def process(self):
@@ -37,7 +36,7 @@ class Processor:
             transcript[1].set_result(results[req_id])
 
     async def add_request(self, request_id, transcript):
-        future = self.loop.create_future()
+        future = asyncio.Future()
         await self.queue.put((request_id, [transcript, future]))
         return future
 
